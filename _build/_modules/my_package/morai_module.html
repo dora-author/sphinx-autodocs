@@ -1,0 +1,174 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>my_package.morai_module &#8212; my_package 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for my_package.morai_module</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    MORAI Module</span>
+<span class="sd">    ~~~~~~~~~~~~~</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1">#from lib.common.logger import Logger</span>
+<span class="c1">#import numpy as np</span>
+
+<div class="viewcode-block" id="Math"><a class="viewcode-back" href="../../my_package.html#my_package.morai_module.Math">[docs]</a><span class="k">class</span> <span class="nc">Math</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A class that can perform various operations using numpy, a vector and matrix operation library.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_b</span> <span class="o">=</span> <span class="n">b</span>
+
+
+<div class="viewcode-block" id="Math.arclength_of_line"><a class="viewcode-back" href="../../my_package.html#my_package.morai_module.Math.arclength_of_line">[docs]</a>    <span class="k">def</span> <span class="nf">arclength_of_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A function that returns the length of the entire curve surrounded by the parameters x and y at y=f(x).</span>
+<span class="sd">        </span>
+<span class="sd">        :param int x: x-axis length</span>
+<span class="sd">        :param int y: y-axis length</span>
+<span class="sd">        :returns arc: entire curve length</span>
+<span class="sd">        </span>
+<span class="sd">        **Descriptions**: Divide the lengths of the x-axis and y-axis by &#39;num_segments&#39;, and calculate the straight length surrounded by the x-axis and y-axis division section using the Pythagorean hypotenuse length formula.</span>
+<span class="sd">          Add up each straight length calculated as many times as &#39;num_segments&#39;, the number of division section on the x-axis and y-axis (the number of intervals on the x-axis and y-axis is the same).</span>
+<span class="sd">          At this time, the larger the &#39;num_segments&#39;, the smaller the division interval, so the straight length close to the curve is obtained.</span>
+
+<span class="sd">        **Example**:</span>
+<span class="sd">            When the x-axis division section for a specific index is &#39;x[indx] - x[indx - 1]&#39;, the length of the entire curve surrounded by the x-axis and y-axis division section can be calculated as follows.</span>
+
+<span class="sd">            &gt;&gt;&gt; for indx in range(1, num_segments):</span>
+<span class="sd">                    arc = arc + np.sqrt((x[indx] - x[indx - 1])**2 + (y[indx] - y[indx - 1])**2)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+            <span class="n">Logger</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s1">&#39;Check dimensions of the line&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+ 
+        <span class="n">num_segments</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">arc</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">for</span> <span class="n">indx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_segments</span><span class="p">):</span>
+            <span class="n">arc</span> <span class="o">=</span> <span class="n">arc</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="n">indx</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">indx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">indx</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">indx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">arc</span></div>
+
+
+<div class="viewcode-block" id="Math.coordinate_transform_point"><a class="viewcode-back" href="../../my_package.html#my_package.morai_module.Math.coordinate_transform_point">[docs]</a>    <span class="k">def</span> <span class="nf">coordinate_transform_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A function that returns a new coordinate P&#39; when the coordinate P rotates three times in 2D coordinate system with rotation axes X and Y.</span>
+
+<span class="sd">        :param int angle: a rotation angle about the origin</span>
+<span class="sd">        :param tuple point: a reference coordinate P. Represented by a 2-element vector p=(px,py).</span>
+<span class="sd">        :returns transform_pt: a new coordinate P&#39;</span>
+
+<span class="sd">        **Descriptions**: Calculate a new coordinate rotated three times using the inner product of the rotation matrix.</span>
+<span class="sd">            The rotation matrix can be calculated as follows:</span>
+
+<span class="sd">            &gt;&gt;&gt; rotation = np.array(((np.cos(angle), -np.sin(angle)),</span>
+<span class="sd">            (np.sin(angle), np.cos(angle))))</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(((</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">))))</span>
+ 
+        <span class="n">transform_pt</span> <span class="o">=</span> <span class="n">rotation</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+        
+        <span class="k">return</span> <span class="n">transform_pt</span></div></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">my_package</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../my_package.html">My Package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, eunjung.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
