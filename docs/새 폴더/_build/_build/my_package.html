@@ -57,32 +57,32 @@
 <dl class="class">
 <dt id="my_package.morai_module.Math">
 <em class="property">class </em><code class="descclassname">my_package.morai_module.</code><code class="descname">Math</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/my_package/morai_module.html#Math"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#my_package.morai_module.Math" title="Permalink to this definition">¶</a></dt>
-<dd><p>A class that can perform various operations using numpy, a vector and matrix operation library.</p>
+<dd><p>벡터 및 행렬 연산 라이브러리인 numpy를 이용하여 다양한 연산을 할 수 있는 클래스이다.</p>
 <dl class="method">
 <dt id="my_package.morai_module.Math.arclength_of_line">
 <code class="descname">arclength_of_line</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/my_package/morai_module.html#Math.arclength_of_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#my_package.morai_module.Math.arclength_of_line" title="Permalink to this definition">¶</a></dt>
-<dd><p>A function that returns the length of the entire curve surrounded by the parameters x and y at y=f(x).</p>
+<dd><p>y=f(x)에서 매개 변수 x와 y로 둘러싸인 곡선의 길이를 구하는 함수이다.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – x-axis length</li>
-<li><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – y-axis length</li>
+<li><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – x축 길이</li>
+<li><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – y축 길이</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns arc:</th><td class="field-body"><p class="first last">entire curve length</p>
+<tr class="field-even field"><th class="field-name">Returns arc:</th><td class="field-body"><p class="first last">y=f(x)에서 x축와 y축으로 둘러싸인 전체 곡선의 길이</p>
 </td>
 </tr>
 </tbody>
 </table>
 <dl class="docutils">
-<dt><strong>Descriptions</strong>: Divide the lengths of the x-axis and y-axis by ‘num_segments’, and calculate the straight length surrounded by the x-axis and y-axis division section using the Pythagorean hypotenuse length formula.</dt>
-<dd>Add up each straight length calculated as many times as ‘num_segments’, the number of division section on the x-axis and y-axis (the number of intervals on the x-axis and y-axis is the same).
-At this time, the larger the ‘num_segments’, the smaller the division interval, so the straight length close to the curve is obtained.</dd>
-<dt><strong>Example</strong>:</dt>
-<dd><p class="first">When the x-axis division section for a specific index is ‘x[indx] - x[indx - 1]’, the length of the entire curve surrounded by the x-axis and y-axis division section can be calculated as follows.</p>
+<dt><strong>설명</strong>: 각 x축과 y축 길이를 ‘num_segments’만큼 분할하고 피타고라스의 빗변 길이 공식을 활용하면 x축, y축의 분할 구간으로 둘러싸인 직선 거리를 구할 수 있다.</dt>
+<dd>이 직선 거리를 각 x축, y축의 분할 구간 개수인 ‘num_segments’만큼 구해서 모두 더한다.
+이때, ‘num_segments’가 클수록 분할 구간의 간격이 작아지므로, 곡선에 가까운 직선의 거리를 구할 수 있다.</dd>
+<dt><strong>예제</strong>:</dt>
+<dd><p class="first">특정 인덱스에 대한 x축 분할 구간이 ‘x[indx] - x[indx - 1]’일 때 x와 y 분할 구간으로 둘러싸인 전체 곡선의 길이는 아래와 같이 구할 수 있다.</p>
 <div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">indx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_segments</span><span class="p">):</span>
 <span class="go">        arc = arc + np.sqrt((x[indx] - x[indx - 1])**2 + (y[indx] - y[indx - 1])**2)</span>
 </pre></div>
@@ -94,26 +94,26 @@ At this time, the larger the ‘num_segments’, the smaller the division interv
 <dl class="method">
 <dt id="my_package.morai_module.Math.coordinate_transform_point">
 <code class="descname">coordinate_transform_point</code><span class="sig-paren">(</span><em>angle</em>, <em>point</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/my_package/morai_module.html#Math.coordinate_transform_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#my_package.morai_module.Math.coordinate_transform_point" title="Permalink to this definition">¶</a></dt>
-<dd><p>A function that returns a new coordinate P’ when the coordinate P rotates three times in 2D coordinate system with rotation axes X and Y.</p>
+<dd><p>회전축 X, Y를 갖는 2차원 좌표계에서 좌표 P가 세 번 회전했을 새로운 좌표 P’를 구하는 함수이다.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – a rotation angle about the origin</li>
-<li><strong>point</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><em>tuple</em></a>) – a reference coordinate P. Represented by a 2-element vector p=(px,py).</li>
+<li><strong>angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – 원점을 중심으로 한 회전각. 세 번 회전했을 때 각 회전각은 동일하다.</li>
+<li><strong>point</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><em>tuple</em></a>) – 기준 좌표. 좌표계에서는 벡터 p=(px,py)로 표시.</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Returns transform_pt:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first last">a new coordinate P’</p>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first last">새로운 좌표 P’</p>
 </td>
 </tr>
 </tbody>
 </table>
 <dl class="docutils">
-<dt><strong>Descriptions</strong>: Calculate a new coordinate rotated three times using the inner product of the rotation matrix.</dt>
-<dd><p class="first">The rotation matrix can be calculated as follows:</p>
+<dt><strong>설명</strong>: 세 번 회전했을 때 새로운 좌표는 회전 행렬의 내적을 이용하여 구한다.</dt>
+<dd><p class="first">한 번 회전했을 때 회전 행렬은 아래와 같이 구할 수 있다:</p>
 <div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(((</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)),</span>
 <span class="go">(np.sin(angle), np.cos(angle))))</span>
 </pre></div>

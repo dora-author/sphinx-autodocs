@@ -42,7 +42,7 @@
 <span class="c1">#import numpy as np</span>
 
 <div class="viewcode-block" id="Math"><a class="viewcode-back" href="../../my_package.html#my_package.morai_module.Math">[docs]</a><span class="k">class</span> <span class="nc">Math</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A class that can perform various operations using numpy, a vector and matrix operation library.</span>
+    <span class="sd">&quot;&quot;&quot;벡터 및 행렬 연산 라이브러리인 numpy를 이용하여 다양한 연산을 할 수 있는 클래스이다.</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -53,18 +53,18 @@
 
 
 <div class="viewcode-block" id="Math.arclength_of_line"><a class="viewcode-back" href="../../my_package.html#my_package.morai_module.Math.arclength_of_line">[docs]</a>    <span class="k">def</span> <span class="nf">arclength_of_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;A function that returns the length of the entire curve surrounded by the parameters x and y at y=f(x).</span>
+        <span class="sd">&quot;&quot;&quot;y=f(x)에서 매개 변수 x와 y로 둘러싸인 곡선의 길이를 구하는 함수이다.</span>
 <span class="sd">        </span>
-<span class="sd">        :param int x: x-axis length</span>
-<span class="sd">        :param int y: y-axis length</span>
-<span class="sd">        :returns arc: entire curve length</span>
+<span class="sd">        :param int x: x축 길이</span>
+<span class="sd">        :param int y: y축 길이</span>
+<span class="sd">        :returns arc: y=f(x)에서 x축와 y축으로 둘러싸인 전체 곡선의 길이</span>
 <span class="sd">        </span>
-<span class="sd">        **Descriptions**: Divide the lengths of the x-axis and y-axis by &#39;num_segments&#39;, and calculate the straight length surrounded by the x-axis and y-axis division section using the Pythagorean hypotenuse length formula.</span>
-<span class="sd">          Add up each straight length calculated as many times as &#39;num_segments&#39;, the number of division section on the x-axis and y-axis (the number of intervals on the x-axis and y-axis is the same).</span>
-<span class="sd">          At this time, the larger the &#39;num_segments&#39;, the smaller the division interval, so the straight length close to the curve is obtained.</span>
+<span class="sd">        **설명**: 각 x축과 y축 길이를 &#39;num_segments&#39;만큼 분할하고 피타고라스의 빗변 길이 공식을 활용하면 x축, y축의 분할 구간으로 둘러싸인 직선 거리를 구할 수 있다.</span>
+<span class="sd">          이 직선 거리를 각 x축, y축의 분할 구간 개수인 &#39;num_segments&#39;만큼 구해서 모두 더한다.</span>
+<span class="sd">          이때, &#39;num_segments&#39;가 클수록 분할 구간의 간격이 작아지므로, 곡선에 가까운 직선의 거리를 구할 수 있다.</span>
 
-<span class="sd">        **Example**:</span>
-<span class="sd">            When the x-axis division section for a specific index is &#39;x[indx] - x[indx - 1]&#39;, the length of the entire curve surrounded by the x-axis and y-axis division section can be calculated as follows.</span>
+<span class="sd">        **예제**:</span>
+<span class="sd">            특정 인덱스에 대한 x축 분할 구간이 &#39;x[indx] - x[indx - 1]&#39;일 때 x와 y 분할 구간으로 둘러싸인 전체 곡선의 길이는 아래와 같이 구할 수 있다.</span>
 
 <span class="sd">            &gt;&gt;&gt; for indx in range(1, num_segments):</span>
 <span class="sd">                    arc = arc + np.sqrt((x[indx] - x[indx - 1])**2 + (y[indx] - y[indx - 1])**2)</span>
@@ -83,14 +83,14 @@
 
 
 <div class="viewcode-block" id="Math.coordinate_transform_point"><a class="viewcode-back" href="../../my_package.html#my_package.morai_module.Math.coordinate_transform_point">[docs]</a>    <span class="k">def</span> <span class="nf">coordinate_transform_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;A function that returns a new coordinate P&#39; when the coordinate P rotates three times in 2D coordinate system with rotation axes X and Y.</span>
+        <span class="sd">&quot;&quot;&quot;회전축 X, Y를 갖는 2차원 좌표계에서 좌표 P가 세 번 회전했을 새로운 좌표 P&#39;를 구하는 함수이다.</span>
 
-<span class="sd">        :param int angle: a rotation angle about the origin</span>
-<span class="sd">        :param tuple point: a reference coordinate P. Represented by a 2-element vector p=(px,py).</span>
-<span class="sd">        :returns transform_pt: a new coordinate P&#39;</span>
+<span class="sd">        :param int angle: 원점을 중심으로 한 회전각. 세 번 회전했을 때 각 회전각은 동일하다.</span>
+<span class="sd">        :param tuple point: 기준 좌표. 좌표계에서는 벡터 p=(px,py)로 표시.</span>
+<span class="sd">        :returns transform_pt: 새로운 좌표 P&#39;</span>
 
-<span class="sd">        **Descriptions**: Calculate a new coordinate rotated three times using the inner product of the rotation matrix.</span>
-<span class="sd">            The rotation matrix can be calculated as follows:</span>
+<span class="sd">        **설명**: 세 번 회전했을 때 새로운 좌표는 회전 행렬의 내적을 이용하여 구한다.</span>
+<span class="sd">            한 번 회전했을 때 회전 행렬은 아래와 같이 구할 수 있다:</span>
 
 <span class="sd">            &gt;&gt;&gt; rotation = np.array(((np.cos(angle), -np.sin(angle)),</span>
 <span class="sd">            (np.sin(angle), np.cos(angle))))</span>

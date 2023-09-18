@@ -1,0 +1,4 @@
+{
+  "esbonio.sphinx.buildDir": "${worksaptceFolder}\\build",
+  "esbonio.sphinx.confDir": ""
+}
