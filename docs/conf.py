@@ -16,7 +16,7 @@ import os
 import shlex
 import sys
 sys.path.insert(0, os.path.abspath('..'))
-from my_package import __version__ as VERSION
+#from my_package import __version__ as VERSION
 
 
 # -- Project information -----------------------------------------------------
@@ -26,9 +26,9 @@ copyright = '2022, eunjung'
 author = 'eunjung'
 
 # The short X.Y version
-version = VERSION
+# version = VERSION
 # The full version, including alpha/beta/rc tags
-release = VERSION
+release = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
